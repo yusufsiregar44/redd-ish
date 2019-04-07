@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { AppRegistry } from 'react-native';
 
-import Home from './app/Home';
+import Home from './pages/Home';
 
 class App extends Component {
   render() {
