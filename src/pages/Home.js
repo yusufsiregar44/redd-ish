@@ -1,5 +1,5 @@
-import React, { Component, StyleSheet } from 'react'
-import { View } from 'react-native'
+import React, { Component } from 'react'
+import { View, StyleSheet } from 'react-native'
 
 // Components
 import QuestionEditor from './home/QuestionEditor';
