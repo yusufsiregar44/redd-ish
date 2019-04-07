@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View } from 'react-native'
 
 import styles from './home/Style';
-
+import QuestionEditor from './home/QuestionEditor';
 export default class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> textInComponent </Text>
+        <QuestionEditor />
       </View>
     )
   }
