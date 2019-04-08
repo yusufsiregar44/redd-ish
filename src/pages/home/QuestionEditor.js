@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
     height: 50,
-    marginVertical: 5,
+    marginVertical: 8,
   },
   characterCounter: {
     alignSelf: 'flex-end'
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   submitButton: {
     alignSelf: 'center',
     borderWidth: 1,
-    padding: 5
+    padding: 8
   }
 })
 
@@ -62,7 +62,8 @@ class QuestionEditor extends Component {
     const { text } = this.state;
     const questionData = {
       id: nextQuestionId,
-      text
+      text,
+      votes: 0
     }
     this.props.addNewQuestion(questionData);
     this.setState({text: ''});
