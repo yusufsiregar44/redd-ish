@@ -1,8 +1,3 @@
-/**
- * @todo
- * 1) integrate onSubmit with redux action
- */
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import {
@@ -13,9 +8,10 @@ import {
   StyleSheet
 } from 'react-native'
 
+// actions
 import { addNewQuestion } from '../../modules/questions';
 
-// Styling
+// styling
 const styles = StyleSheet.create({
   textInput: {
     borderWidth: 1,
@@ -30,6 +26,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5
   }
+})
+
+// react-redux mapping to props
+const mapStateToProps = state => ({
+  questionId: state.questions.questionId
+});
+
+const mapDispatchToProps = dispatch => ({
+  addNewQuestion: questionData => addNewQuestion({ dispatch, questionData })
 })
 
 class QuestionEditor extends Component {
@@ -57,7 +62,8 @@ class QuestionEditor extends Component {
   )
 
   /**
-   * submits the state's text through redux
+   * submits the state's text to redux store and resets component's state
+   * sets the id of the question by using the nextId state
    */
   _onSubmit = () => {
     const { nextQuestionId } = this.props;
@@ -91,13 +97,5 @@ class QuestionEditor extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  questionId: state.questions.questionId
-});
-
-const mapDispatchToProps = dispatch => ({
-  addNewQuestion: questionData => addNewQuestion({ dispatch, questionData })
-})
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionEditor);
