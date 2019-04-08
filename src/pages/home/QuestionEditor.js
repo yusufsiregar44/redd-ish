@@ -7,6 +7,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native'
+import PropTypes from 'prop-types';
 
 // actions
 import { addNewQuestion } from '../../modules/questions';
@@ -26,15 +27,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 5
   }
-})
-
-// react-redux mapping to props
-const mapStateToProps = state => ({
-  questionId: state.questions.questionId
-});
-
-const mapDispatchToProps = dispatch => ({
-  addNewQuestion: questionData => addNewQuestion({ dispatch, questionData })
 })
 
 class QuestionEditor extends Component {
@@ -67,9 +59,10 @@ class QuestionEditor extends Component {
    */
   _onSubmit = () => {
     const { nextQuestionId } = this.props;
+    const { text } = this.state;
     const questionData = {
       id: nextQuestionId,
-      value: this.state.text
+      text
     }
     this.props.addNewQuestion(questionData);
     this.setState({text: ''});
@@ -96,6 +89,21 @@ class QuestionEditor extends Component {
       </View>
     )
   }
+}
+
+// react-redux mapping to props
+const mapStateToProps = state => ({
+  nextQuestionId: state.questions.nextQuestionId
+});
+
+const mapDispatchToProps = dispatch => ({
+  addNewQuestion: questionData => addNewQuestion({ dispatch, questionData })
+})
+
+// prop-types validation
+QuestionEditor.propTypes = {
+  nextQuestionId: PropTypes.number,
+  addNewQuestion: PropTypes.func
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionEditor);
