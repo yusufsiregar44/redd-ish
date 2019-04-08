@@ -1,11 +1,12 @@
 # redd-ish
 A rather-adequate-yet-functional clone of the world famous reddit
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Hosting
 Access this website at https://redd-ish.firebaseapp.com/
 
 P.S. for best experience, please use Google Chrome :)
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
