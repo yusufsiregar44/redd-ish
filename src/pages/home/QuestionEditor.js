@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import {
   TextInput,
   View,
@@ -11,6 +12,8 @@ import {
   Text,
   StyleSheet
 } from 'react-native'
+
+import { addNewQuestion } from '../../modules/questions';
 
 // Styling
 const styles = StyleSheet.create({
@@ -29,7 +32,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class QuestionEditor extends Component {
+class QuestionEditor extends Component {
   /**
    * 1) text: state to contain string of question
    */
@@ -57,7 +60,13 @@ export default class QuestionEditor extends Component {
    * submits the state's text through redux
    */
   _onSubmit = () => {
-    this.setState({text: ''})
+    const { nextQuestionId } = this.props;
+    const questionData = {
+      id: nextQuestionId,
+      value: this.state.text
+    }
+    this.props.addNewQuestion(questionData);
+    this.setState({text: ''});
   }
 
   render() {
@@ -83,3 +92,12 @@ export default class QuestionEditor extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  questionId: state.questions.questionId
+});
+
+const mapDispatchToProps = dispatch => ({
+  addNewQuestion: questionData => addNewQuestion({ dispatch, questionData })
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionEditor);
