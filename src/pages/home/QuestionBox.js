@@ -58,7 +58,8 @@ class QuestionBox extends Component {
 QuestionBox.propTypes = ({
   questionText: PropTypes.string,
   questionId: PropTypes.number,
-  questionVotes:  PropTypes.number
+  questionVotes:  PropTypes.number,
+  modifyVote: PropTypes.func
 })
 
 export default QuestionBox;
